@@ -1,0 +1,14 @@
+---
+- name: "Set hostname"
+  hosts: localhost
+
+  tasks:
+    - name: "Include global variables"
+      include_vars: global_variables.yml
+    - name: Set hostname
+      template:
+        src: ../files/hostname.j2
+        dest: /etc/hostname
+        owner: root
+        group: root
+        mode: '0644'

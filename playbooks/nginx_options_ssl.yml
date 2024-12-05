@@ -1,0 +1,11 @@
+---
+-
+  name: "Add options-ssl-nginx.conf to nginx config"
+  hosts: localhost
+  tasks:
+    - name: "Add options-ssl-nginx.conf to nginx config"
+      copy:
+        src: ../files/options-ssl-nginx.conf
+        dest: /etc/letsencrypt/options-ssl-nginx.conf
+
+

@@ -1,0 +1,7 @@
+---
+# ubuntu_codename: focal
+hostname: rssbridge.srcradostomsk.ru
+# server_ip: 178.253.43.195
+# administrative_user: zet
+# sshd_port: 2294
+ssl_domains_list: rssbridge.srcradostomsk.ru

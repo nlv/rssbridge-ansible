@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="RSS-Bridge" />
+    <title>RSS-Bridge</title>
+    <link href="static/style.css?2023-03-24" rel="stylesheet">
+    <link rel="icon" type="image/png" href="static/favicon.png">
+
+    <script src="static/rss-bridge.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="./">
+                <img width="400" src="static/logo_600px.png">
+            </a>
+        </header>
+
+        
+        
+<script>
+    document.addEventListener('DOMContentLoaded', rssbridge_toggle_bridge);
+    document.addEventListener('DOMContentLoaded', rssbridge_list_search);
+    document.addEventListener('DOMContentLoaded', rssbridge_feed_finder);
+</script>
+
+<section class="searchbar">
+    <h3>Search</h3>
+    <input
+        type="text"
+        name="searchfield"
+        id="searchfield"
+        placeholder="Insert URL or bridge name"
+        onchange="rssbridge_list_search()"
+        onkeyup="rssbridge_list_search()"
+        value=""
+    >
+    <button
+        type="button"
+	    id="findfeed"
+        name="findfeed"
+    />Find Feed from URL</button>
+    <section id="findfeedresults">
+    </section>
+
+</section>
+
+    <section
+        class="bridge-card"
+        id="bridge-CssSelectorBridge"
+        data-ref="CSS Selector Bridge"
+        data-short-name="CssSelectorBridge"
+    >
+
+    <h2><a href="https://github.com/RSS-Bridge/rss-bridge/">CSS Selector Bridge</a></h2>
+    <p class="description">Convert any site to RSS feed using CSS selectors (Advanced Users)</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-CssSelectorBridge" />
+    <label class="showmore" for="showmore-CssSelectorBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="CssSelectorBridge" /><div class="parameters"><label for="arg-CssSelectorBridge-0-home_page">Site URL: Home page with latest articles</label>
+<input  required id="arg-CssSelectorBridge-0-home_page" type="text" value="" placeholder="https://example.com/blog/" name="home_page" />
+<i class="info" data-for="arg-CssSelectorBridge-0-home_page" title="Example (right click to use):
+https://example.com/blog/" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-CssSelectorBridge-0-url_selector">Selector for article links or their parent elements</label>
+<input  required id="arg-CssSelectorBridge-0-url_selector" type="text" value="" placeholder="a.article" name="url_selector" />
+<i class="info" data-for="arg-CssSelectorBridge-0-url_selector" title="This bridge works using CSS selectors, e.g. &quot;a.article&quot; will match all &lt;a class=&quot;article&quot; 
+href=&quot;URL&quot;&gt;TITLE&lt;/a&gt; on home page, each one being treated as a feed item. &#10;&#13;
+Instead of just a link you can selet one of its parent element. Everything inside that
+element becomes feed item content, e.g. image and summary present on home page.
+When doing so, the first link inside the selected element becomes feed item URL/Title.
+
+Example (right click to use):
+a.article" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-CssSelectorBridge-0-url_pattern">[Optional] Pattern for site URLs to keep in feed</label>
+<input  id="arg-CssSelectorBridge-0-url_pattern" type="text" value="" placeholder="/blog/article/.*" name="url_pattern" />
+<i class="info" data-for="arg-CssSelectorBridge-0-url_pattern" title="Optionally filter items by applying a regular expression on their URL
+
+Example (right click to use):
+/blog/article/.*" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-CssSelectorBridge-0-content_selector">[Optional] Selector to expand each article content</label>
+<input  id="arg-CssSelectorBridge-0-content_selector" type="text" value="" placeholder="article.content" name="content_selector" />
+<i class="info" data-for="arg-CssSelectorBridge-0-content_selector" title="When specified, the bridge will fetch each article from its URL
+and extract content using the provided selector (Slower!)
+
+Example (right click to use):
+article.content" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-CssSelectorBridge-0-content_cleanup">[Optional] Content cleanup: List of items to remove</label>
+<input  id="arg-CssSelectorBridge-0-content_cleanup" type="text" value="" placeholder="div.ads, div.comments" name="content_cleanup" />
+<i class="info" data-for="arg-CssSelectorBridge-0-content_cleanup" title="Selector for unnecessary elements to remove inside article contents.
+
+Example (right click to use):
+div.ads, div.comments" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-CssSelectorBridge-0-title_cleanup">[Optional] Text to remove from expanded article title</label>
+<input  id="arg-CssSelectorBridge-0-title_cleanup" type="text" value="" placeholder=" | BlogName" name="title_cleanup" />
+<i class="info" data-for="arg-CssSelectorBridge-0-title_cleanup" title="When fetching each article page, feed item title comes from page title. 
+Specify here some text from page title that need to be removed, e.g. &quot; | BlogName&quot;.
+
+Example (right click to use):
+ | BlogName" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-CssSelectorBridge-0-discard_thumbnail">[Optional] Discard thumbnail set by site author</label>
+<input  id="arg-CssSelectorBridge-0-discard_thumbnail" type="checkbox" name="discard_thumbnail"  />
+<i class="info" data-for="arg-CssSelectorBridge-0-discard_thumbnail" title="Some sites set their logo as thumbnail for every article. Use this option to discard it." oncontextmenu="return false">i</i><label for="arg-CssSelectorBridge-0-thumbnail_as_header">[Optional] Insert thumbnail as article header</label>
+<input  id="arg-CssSelectorBridge-0-thumbnail_as_header" type="checkbox" name="thumbnail_as_header"  />
+<i class="info" data-for="arg-CssSelectorBridge-0-thumbnail_as_header" title="Insert article main image on top of article contents." oncontextmenu="return false">i</i><label for="arg-CssSelectorBridge-0-limit">Limit</label>
+<input  id="arg-CssSelectorBridge-0-limit" type="number" value="" placeholder="" name="limit" />
+<i class="info" data-for="arg-CssSelectorBridge-0-limit" title="Maximum number of items to return" oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-CssSelectorBridge">Show less</label><p class="maintainer">ORelio</p></section>    <section
+        class="bridge-card"
+        id="bridge-FeedMergeBridge"
+        data-ref="FeedMerge"
+        data-short-name="FeedMergeBridge"
+    >
+
+    <h2><a href="https://github.com/RSS-Bridge/rss-bridge">FeedMerge</a></h2>
+    <p class="description">This bridge merges two or more feeds into a single feed. Max 10 items are fetched from each feed.</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-FeedMergeBridge" />
+    <label class="showmore" for="showmore-FeedMergeBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="FeedMergeBridge" /><div class="parameters"><label for="arg-FeedMergeBridge-0-feed_name">Feed name</label>
+<input  id="arg-FeedMergeBridge-0-feed_name" type="text" value="" placeholder="FeedMerge" name="feed_name" />
+<i class="info" data-for="arg-FeedMergeBridge-0-feed_name" title="Example (right click to use):
+FeedMerge" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-FeedMergeBridge-0-feed_1">Feed url</label>
+<input  required id="arg-FeedMergeBridge-0-feed_1" type="text" value="" placeholder="https://lorem-rss.herokuapp.com/feed?unit=day" name="feed_1" />
+<i class="info" data-for="arg-FeedMergeBridge-0-feed_1" title="Example (right click to use):
+https://lorem-rss.herokuapp.com/feed?unit=day" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-FeedMergeBridge-0-feed_2">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_2" type="text" value="" placeholder="" name="feed_2" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_3">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_3" type="text" value="" placeholder="" name="feed_3" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_4">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_4" type="text" value="" placeholder="" name="feed_4" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_5">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_5" type="text" value="" placeholder="" name="feed_5" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_6">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_6" type="text" value="" placeholder="" name="feed_6" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_7">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_7" type="text" value="" placeholder="" name="feed_7" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_8">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_8" type="text" value="" placeholder="" name="feed_8" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_9">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_9" type="text" value="" placeholder="" name="feed_9" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-feed_10">Feed url</label>
+<input  id="arg-FeedMergeBridge-0-feed_10" type="text" value="" placeholder="" name="feed_10" />
+<i class="no-info"></i><label for="arg-FeedMergeBridge-0-limit">Limit</label>
+<input  id="arg-FeedMergeBridge-0-limit" type="number" value="" placeholder="" name="limit" />
+<i class="info" data-for="arg-FeedMergeBridge-0-limit" title="Maximum number of items to return" oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-FeedMergeBridge">Show less</label><p class="maintainer">dvikan</p></section>    <section
+        class="bridge-card"
+        id="bridge-FeedReducerBridge"
+        data-ref="Feed Reducer [%]"
+        data-short-name="FeedReducerBridge"
+    >
+
+    <h2><a href="http://github.com/RSS-Bridge/rss-bridge/">Feed Reducer [%]</a></h2>
+    <p class="description">Choose a percentage of a feed you want to see.</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-FeedReducerBridge" />
+    <label class="showmore" for="showmore-FeedReducerBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="FeedReducerBridge" /><div class="parameters"><label for="arg-FeedReducerBridge-0-url">Feed URI</label>
+<input  required id="arg-FeedReducerBridge-0-url" type="text" value="" placeholder="https://lorem-rss.herokuapp.com/feed?length=42" name="url" />
+<i class="info" data-for="arg-FeedReducerBridge-0-url" title="Example (right click to use):
+https://lorem-rss.herokuapp.com/feed?length=42" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-FeedReducerBridge-0-percentage">percentage</label>
+<input  required id="arg-FeedReducerBridge-0-percentage" type="number" value="" placeholder="50" name="percentage" />
+<i class="info" data-for="arg-FeedReducerBridge-0-percentage" title="Example (right click to use):
+50" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-FeedReducerBridge">Show less</label><p class="maintainer">mdemoss</p></section>    <section
+        class="bridge-card"
+        id="bridge-FilterBridge"
+        data-ref="Filter"
+        data-short-name="FilterBridge"
+    >
+
+    <h2><a href="https://github.com/RSS-Bridge/rss-bridge">Filter</a></h2>
+    <p class="description">Filters a feed of your choice</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-FilterBridge" />
+    <label class="showmore" for="showmore-FilterBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="FilterBridge" /><div class="parameters"><label for="arg-FilterBridge-0-url">Feed URL</label>
+<input  required id="arg-FilterBridge-0-url" type="text" value="" placeholder="https://lorem-rss.herokuapp.com/feed?unit=day" name="url" />
+<i class="info" data-for="arg-FilterBridge-0-url" title="Example (right click to use):
+https://lorem-rss.herokuapp.com/feed?unit=day" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-FilterBridge-0-filter">Filter (regular expression!!!)</label>
+<input  id="arg-FilterBridge-0-filter" type="text" value="" placeholder="" name="filter" />
+<i class="no-info"></i><label for="arg-FilterBridge-0-filter_type">Filter type</label>
+<select  id="arg-FilterBridge-0-filter_type" name="filter_type" >
+<option value="permit" selected>Keep matching items</option>
+<option value="block">Hide matching items</option>
+</select>
+<i class="no-info"></i><label for="arg-FilterBridge-0-case_insensitive">Case-insensitive filter</label>
+<input  id="arg-FilterBridge-0-case_insensitive" type="checkbox" name="case_insensitive"  />
+<i class="no-info"></i><label for="arg-FilterBridge-0-fix_encoding">Attempt Latin1/UTF-8 fixes when evaluating filter</label>
+<input  id="arg-FilterBridge-0-fix_encoding" type="checkbox" name="fix_encoding"  />
+<i class="no-info"></i><label for="arg-FilterBridge-0-target_author">Apply filter on author</label>
+<input  id="arg-FilterBridge-0-target_author" type="checkbox" name="target_author"  />
+<i class="no-info"></i><label for="arg-FilterBridge-0-target_content">Apply filter on content</label>
+<input  id="arg-FilterBridge-0-target_content" type="checkbox" name="target_content"  />
+<i class="no-info"></i><label for="arg-FilterBridge-0-target_title">Apply filter on title</label>
+<input  id="arg-FilterBridge-0-target_title" type="checkbox" name="target_title" checked />
+<i class="no-info"></i><label for="arg-FilterBridge-0-target_uri">Apply filter on URI/URL</label>
+<input  id="arg-FilterBridge-0-target_uri" type="checkbox" name="target_uri"  />
+<i class="no-info"></i><label for="arg-FilterBridge-0-title_from_content">Generate title from content (overwrite existing title)</label>
+<input  id="arg-FilterBridge-0-title_from_content" type="checkbox" name="title_from_content"  />
+<i class="no-info"></i><label for="arg-FilterBridge-0-length_limit">Max length analyzed by filter (-1: no limit)</label>
+<input  id="arg-FilterBridge-0-length_limit" type="number" value="-1" placeholder="" name="length_limit" />
+<i class="no-info"></i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-FilterBridge">Show less</label><p class="maintainer">Frenzie, ORelio</p></section>    <section
+        class="bridge-card"
+        id="bridge-GettrBridge"
+        data-ref="Gettr.com bridge"
+        data-short-name="GettrBridge"
+    >
+
+    <h2><a href="https://gettr.com">Gettr.com bridge</a></h2>
+    <p class="description">Fetches the latest posts from a GETTR user</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-GettrBridge" />
+    <label class="showmore" for="showmore-GettrBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="GettrBridge" /><div class="parameters"><label for="arg-GettrBridge-0-user">User</label>
+<input  required id="arg-GettrBridge-0-user" type="text" value="" placeholder="joerogan" name="user" />
+<i class="info" data-for="arg-GettrBridge-0-user" title="Example (right click to use):
+joerogan" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-GettrBridge-0-limit">Limit</label>
+<input  required id="arg-GettrBridge-0-limit" type="number" value="5" placeholder="" name="limit" />
+<i class="info" data-for="arg-GettrBridge-0-limit" title="Maximum number of items to return (maximum 20)" oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-GettrBridge">Show less</label><p class="maintainer">dvikan</p></section>    <section
+        class="bridge-card"
+        id="bridge-MastodonBridge"
+        data-ref="ActivityPub Bridge"
+        data-short-name="MastodonBridge"
+    >
+
+    <h2><a href="https://mastodon.social">ActivityPub Bridge</a></h2>
+    <p class="description">Returns recent statuses. Supports Mastodon, Pleroma and Misskey, among others. Access to
+    instances that have Authorized Fetch enabled requires
+    <a href="https://rss-bridge.github.io/rss-bridge/Bridge_Specific/ActivityPub_(Mastodon).html">configuration</a>.</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-MastodonBridge" />
+    <label class="showmore" for="showmore-MastodonBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="MastodonBridge" /><div class="parameters"><label for="arg-MastodonBridge-0-canusername">Canonical username</label>
+<input  required id="arg-MastodonBridge-0-canusername" type="text" value="" placeholder="@sebsauvage@framapiaf.org" name="canusername" />
+<i class="info" data-for="arg-MastodonBridge-0-canusername" title="Example (right click to use):
+@sebsauvage@framapiaf.org" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-MastodonBridge-0-noregular">Without regular statuses</label>
+<input  id="arg-MastodonBridge-0-noregular" type="checkbox" name="noregular"  />
+<i class="info" data-for="arg-MastodonBridge-0-noregular" title="Hide regular statuses (i.e. non-boosts, replies, etc.)" oncontextmenu="return false">i</i><label for="arg-MastodonBridge-0-norep">Without replies</label>
+<input  id="arg-MastodonBridge-0-norep" type="checkbox" name="norep"  />
+<i class="info" data-for="arg-MastodonBridge-0-norep" title="Hide replies, as determined by relations (not mentions)." oncontextmenu="return false">i</i><label for="arg-MastodonBridge-0-noboost">Without boosts</label>
+<input  id="arg-MastodonBridge-0-noboost" type="checkbox" name="noboost"  />
+<i class="info" data-for="arg-MastodonBridge-0-noboost" title="Hide boosts. This will reduce loading time as RSS-Bridge fetches the boosted status from other federated instances." oncontextmenu="return false">i</i><label for="arg-MastodonBridge-0-signaturetype">Signature Type</label>
+<select  id="arg-MastodonBridge-0-signaturetype" name="signaturetype" >
+<option value="noquery" selected>Without Query (Mastodon)</option>
+<option value="query">With Query (GoToSocial)</option>
+<option value="nosig">Don't sign</option>
+</select>
+<i class="info" data-for="arg-MastodonBridge-0-signaturetype" title="How to sign requests when fetching from instances.
+                Defaults to &quot;nosig&quot; for RSS-Bridge instances that did not set up signatures." oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-MastodonBridge">Show less</label><p class="maintainer">Austin Huang</p></section>    <section
+        class="bridge-card"
+        id="bridge-RedditBridge"
+        data-ref="Reddit Bridge"
+        data-short-name="RedditBridge"
+    >
+
+    <h2><a href="https://old.reddit.com">Reddit Bridge</a></h2>
+    <p class="description">Return hot submissions from Reddit</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-RedditBridge" />
+    <label class="showmore" for="showmore-RedditBridge">Show more</label>
+
+<h5>single</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="RedditBridge" /><input type="hidden" name="context" value="single" /><div class="parameters"><label for="arg-RedditBridge-single-r">SubReddit</label>
+<input  required id="arg-RedditBridge-single-r" type="text" value="" placeholder="selfhosted" name="r" />
+<i class="info" data-for="arg-RedditBridge-single-r" title="SubReddit name
+
+Example (right click to use):
+selfhosted" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-single-f">Flair</label>
+<input  id="arg-RedditBridge-single-f" type="text" value="" placeholder="Proxy" name="f" />
+<i class="info" data-for="arg-RedditBridge-single-f" title="Flair filter
+
+Example (right click to use):
+Proxy" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-single-score">Minimal score</label>
+<input  id="arg-RedditBridge-single-score" type="number" value="" placeholder="100" name="score" />
+<i class="info" data-for="arg-RedditBridge-single-score" title="Filter out posts with lower score
+
+Example (right click to use):
+100" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-single-d">Sort By</label>
+<select  id="arg-RedditBridge-single-d" name="d" >
+<option value="hot" selected>Hot</option>
+<option value="relevance">Relevance</option>
+<option value="new">New</option>
+<option value="top">Top</option>
+</select>
+<i class="info" data-for="arg-RedditBridge-single-d" title="Sort by new, hot, top or relevancy" oncontextmenu="return false">i</i><label for="arg-RedditBridge-single-search">Keyword search</label>
+<input  id="arg-RedditBridge-single-search" type="text" value="" placeholder="cats, dogs" name="search" />
+<i class="info" data-for="arg-RedditBridge-single-search" title="Keyword search, separated by commas
+
+Example (right click to use):
+cats, dogs" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-single-frontend">frontend</label>
+<select  id="arg-RedditBridge-single-frontend" name="frontend" >
+<option value="https://old.reddit.com">old.reddit.com</option>
+<option value="https://reddit.com">reddit.com</option>
+<option value="https://libreddit.kavin.rocks">libreddit.kavin.rocks</option>
+</select>
+<i class="info" data-for="arg-RedditBridge-single-frontend" title="choose frontend for  reddit" oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<h5>multi</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="RedditBridge" /><input type="hidden" name="context" value="multi" /><div class="parameters"><label for="arg-RedditBridge-multi-rs">SubReddits</label>
+<input  required id="arg-RedditBridge-multi-rs" type="text" value="" placeholder="selfhosted, php" name="rs" />
+<i class="info" data-for="arg-RedditBridge-multi-rs" title="SubReddit names, separated by commas
+
+Example (right click to use):
+selfhosted, php" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-multi-score">Minimal score</label>
+<input  id="arg-RedditBridge-multi-score" type="number" value="" placeholder="100" name="score" />
+<i class="info" data-for="arg-RedditBridge-multi-score" title="Filter out posts with lower score
+
+Example (right click to use):
+100" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-multi-d">Sort By</label>
+<select  id="arg-RedditBridge-multi-d" name="d" >
+<option value="hot" selected>Hot</option>
+<option value="relevance">Relevance</option>
+<option value="new">New</option>
+<option value="top">Top</option>
+</select>
+<i class="info" data-for="arg-RedditBridge-multi-d" title="Sort by new, hot, top or relevancy" oncontextmenu="return false">i</i><label for="arg-RedditBridge-multi-search">Keyword search</label>
+<input  id="arg-RedditBridge-multi-search" type="text" value="" placeholder="cats, dogs" name="search" />
+<i class="info" data-for="arg-RedditBridge-multi-search" title="Keyword search, separated by commas
+
+Example (right click to use):
+cats, dogs" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-multi-frontend">frontend</label>
+<select  id="arg-RedditBridge-multi-frontend" name="frontend" >
+<option value="https://old.reddit.com">old.reddit.com</option>
+<option value="https://reddit.com">reddit.com</option>
+<option value="https://libreddit.kavin.rocks">libreddit.kavin.rocks</option>
+</select>
+<i class="info" data-for="arg-RedditBridge-multi-frontend" title="choose frontend for  reddit" oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<h5>user</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="RedditBridge" /><input type="hidden" name="context" value="user" /><div class="parameters"><label for="arg-RedditBridge-user-u">User</label>
+<input  required id="arg-RedditBridge-user-u" type="text" value="" placeholder="shwikibot" name="u" />
+<i class="info" data-for="arg-RedditBridge-user-u" title="User name
+
+Example (right click to use):
+shwikibot" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-user-comments">Comments</label>
+<input  id="arg-RedditBridge-user-comments" type="checkbox" name="comments"  />
+<i class="info" data-for="arg-RedditBridge-user-comments" title="Whether to return comments" oncontextmenu="return false">i</i><label for="arg-RedditBridge-user-score">Minimal score</label>
+<input  id="arg-RedditBridge-user-score" type="number" value="" placeholder="100" name="score" />
+<i class="info" data-for="arg-RedditBridge-user-score" title="Filter out posts with lower score
+
+Example (right click to use):
+100" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-user-d">Sort By</label>
+<select  id="arg-RedditBridge-user-d" name="d" >
+<option value="hot" selected>Hot</option>
+<option value="relevance">Relevance</option>
+<option value="new">New</option>
+<option value="top">Top</option>
+</select>
+<i class="info" data-for="arg-RedditBridge-user-d" title="Sort by new, hot, top or relevancy" oncontextmenu="return false">i</i><label for="arg-RedditBridge-user-search">Keyword search</label>
+<input  id="arg-RedditBridge-user-search" type="text" value="" placeholder="cats, dogs" name="search" />
+<i class="info" data-for="arg-RedditBridge-user-search" title="Keyword search, separated by commas
+
+Example (right click to use):
+cats, dogs" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-RedditBridge-user-frontend">frontend</label>
+<select  id="arg-RedditBridge-user-frontend" name="frontend" >
+<option value="https://old.reddit.com">old.reddit.com</option>
+<option value="https://reddit.com">reddit.com</option>
+<option value="https://libreddit.kavin.rocks">libreddit.kavin.rocks</option>
+</select>
+<i class="info" data-for="arg-RedditBridge-user-frontend" title="choose frontend for  reddit" oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-RedditBridge">Show less</label><p class="maintainer">dawidsowa</p></section>    <section
+        class="bridge-card"
+        id="bridge-RumbleBridge"
+        data-ref="Rumble.com "
+        data-short-name="RumbleBridge"
+    >
+
+    <h2><a href="https://rumble.com">Rumble.com </a></h2>
+    <p class="description">Fetches the latest channel/user videos</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-RumbleBridge" />
+    <label class="showmore" for="showmore-RumbleBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="RumbleBridge" /><div class="parameters"><label for="arg-RumbleBridge-0-account">Account</label>
+<input  required id="arg-RumbleBridge-0-account" type="text" value="bjornandreasbullhansen" placeholder="" name="account" />
+<i class="no-info"></i><label for="arg-RumbleBridge-0-type">Type</label>
+<select  id="arg-RumbleBridge-0-type" name="type" >
+<option value="channel">Channel</option>
+<option value="user">User</option>
+</select>
+<i class="no-info"></i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-RumbleBridge">Show less</label><p class="maintainer">dvikan</p></section>    <section
+        class="bridge-card"
+        id="bridge-SoundcloudBridge"
+        data-ref="Soundcloud Bridge"
+        data-short-name="SoundCloudBridge"
+    >
+
+    <h2><a href="https://soundcloud.com/">Soundcloud Bridge</a></h2>
+    <p class="description">Returns 10 newest music from user profile</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-SoundcloudBridge" />
+    <label class="showmore" for="showmore-SoundcloudBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="SoundcloudBridge" /><div class="parameters"><label for="arg-SoundcloudBridge-0-u">username</label>
+<input  required id="arg-SoundcloudBridge-0-u" type="text" value="" placeholder="thekidlaroi" name="u" />
+<i class="info" data-for="arg-SoundcloudBridge-0-u" title="Example (right click to use):
+thekidlaroi" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-SoundcloudBridge-0-t">Content</label>
+<select  id="arg-SoundcloudBridge-0-t" name="t" >
+<option value="all">All (except likes)</option>
+<option value="tracks" selected>Tracks</option>
+<option value="albums">Albums</option>
+<option value="playlists">Playlists</option>
+<option value="reposts">Reposts</option>
+<option value="likes">Likes</option>
+</select>
+<i class="no-info"></i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-SoundcloudBridge">Show less</label><p class="maintainer">kranack, Roliga</p></section>    <section
+        class="bridge-card"
+        id="bridge-TelegramBridge"
+        data-ref="Telegram Bridge"
+        data-short-name="TelegramBridge"
+    >
+
+    <h2><a href="https://t.me">Telegram Bridge</a></h2>
+    <p class="description">Returns newest posts from a *public* Telegram channel</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-TelegramBridge" />
+    <label class="showmore" for="showmore-TelegramBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="TelegramBridge" /><div class="parameters"><label for="arg-TelegramBridge-0-username">Username</label>
+<input  required id="arg-TelegramBridge-0-username" type="text" value="" placeholder="@rssbridge" name="username" />
+<i class="info" data-for="arg-TelegramBridge-0-username" title="Example (right click to use):
+@rssbridge" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-TelegramBridge">Show less</label><p class="maintainer">VerifiedJoseph</p></section>    <section
+        class="bridge-card"
+        id="bridge-ThePirateBayBridge"
+        data-ref="The Pirate Bay"
+        data-short-name="ThePirateBayBridge"
+    >
+
+    <h2><a href="https://thepiratebay.org">The Pirate Bay</a></h2>
+    <p class="description">Returns results for the keywords. You can put several
+ list of keywords by separating them with a semicolon (e.g. "one show;another
+ show"). Category based search needs the category number as input. User based
+ search takes the Uploader name. Search can be done in a specified category</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-ThePirateBayBridge" />
+    <label class="showmore" for="showmore-ThePirateBayBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="ThePirateBayBridge" /><div class="parameters"><label for="arg-ThePirateBayBridge-0-q">keywords/username/category, separated by semicolons</label>
+<input  required id="arg-ThePirateBayBridge-0-q" type="text" value="" placeholder="simpsons" name="q" />
+<i class="info" data-for="arg-ThePirateBayBridge-0-q" title="Example (right click to use):
+simpsons" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-ThePirateBayBridge-0-crit">Search type</label>
+<select  id="arg-ThePirateBayBridge-0-crit" name="crit" >
+<option value="search">search</option>
+<option value="cat">category</option>
+<option value="usr">user</option>
+</select>
+<i class="no-info"></i><label for="arg-ThePirateBayBridge-0-catCheck">Specify category for keyword search ?</label>
+<input  id="arg-ThePirateBayBridge-0-catCheck" type="checkbox" name="catCheck"  />
+<i class="no-info"></i><label for="arg-ThePirateBayBridge-0-cat">Category number</label>
+<input  id="arg-ThePirateBayBridge-0-cat" type="text" value="" placeholder="100, 200&hellip; See TPB for category number" name="cat" />
+<i class="info" data-for="arg-ThePirateBayBridge-0-cat" title="Example (right click to use):
+100, 200&hellip; See TPB for category number" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-ThePirateBayBridge-0-trusted">Only get results from Trusted or VIP users ?</label>
+<input  id="arg-ThePirateBayBridge-0-trusted" type="checkbox" name="trusted"  />
+<i class="no-info"></i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-ThePirateBayBridge">Show less</label><p class="maintainer">dvikan</p></section>    <section
+        class="bridge-card"
+        id="bridge-TikTokBridge"
+        data-ref="TikTok Bridge"
+        data-short-name="TikTokBridge"
+    >
+
+    <h2><a href="https://www.tiktok.com">TikTok Bridge</a></h2>
+    <p class="description">Returns posts</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-TikTokBridge" />
+    <label class="showmore" for="showmore-TikTokBridge">Show more</label>
+
+<h5>By user</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="TikTokBridge" /><input type="hidden" name="context" value="By user" /><div class="parameters"><label for="arg-TikTokBridge-By+user-username">Username</label>
+<input  required id="arg-TikTokBridge-By+user-username" type="text" value="" placeholder="@tiktok" name="username" />
+<i class="info" data-for="arg-TikTokBridge-By+user-username" title="Example (right click to use):
+@tiktok" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-TikTokBridge">Show less</label><p class="maintainer">VerifiedJoseph</p></section>    <section
+        class="bridge-card"
+        id="bridge-TwitchBridge"
+        data-ref="Twitch Bridge"
+        data-short-name="TwitchBridge"
+    >
+
+    <h2><a href="https://twitch.tv/">Twitch Bridge</a></h2>
+    <p class="description">Twitch channel videos</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-TwitchBridge" />
+    <label class="showmore" for="showmore-TwitchBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="TwitchBridge" /><div class="parameters"><label for="arg-TwitchBridge-0-channel">Channel</label>
+<input  required id="arg-TwitchBridge-0-channel" type="text" value="" placeholder="criticalrole" name="channel" />
+<i class="info" data-for="arg-TwitchBridge-0-channel" title="Lowercase channel name as seen in channel URL
+
+Example (right click to use):
+criticalrole" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-TwitchBridge-0-type">Type</label>
+<select  id="arg-TwitchBridge-0-type" name="type" >
+<option value="all">All</option>
+<option value="archive" selected>Archive</option>
+<option value="highlight">Highlights</option>
+<option value="upload">Uploads</option>
+<option value="past_premiere">Past Premieres</option>
+<option value="premiere_upload">Premiere Uploads</option>
+</select>
+<i class="no-info"></i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-TwitchBridge">Show less</label><p class="maintainer">Roliga</p></section>    <section
+        class="bridge-card"
+        id="bridge-VkBridge"
+        data-ref="VK.com"
+        data-short-name="VkBridge"
+    >
+
+    <h2><a href="https://vk.com/">VK.com</a></h2>
+    <p class="description">Working with open pages</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-VkBridge" />
+    <label class="showmore" for="showmore-VkBridge">Show more</label>
+
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="VkBridge" /><div class="parameters"><label for="arg-VkBridge-0-u">Group or user name</label>
+<input  required id="arg-VkBridge-0-u" type="text" value="" placeholder="elonmusk_tech" name="u" />
+<i class="info" data-for="arg-VkBridge-0-u" title="Example (right click to use):
+elonmusk_tech" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-VkBridge-0-hide_reposts">Hide reposts</label>
+<input  id="arg-VkBridge-0-hide_reposts" type="checkbox" name="hide_reposts"  />
+<i class="no-info"></i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-VkBridge">Show less</label><p class="maintainer">em92</p></section>    <section
+        class="bridge-card"
+        id="bridge-XPathBridge"
+        data-ref="XPathBridge"
+        data-short-name="XPathBridge"
+    >
+
+    <h2><a href="https://github.com/rss-bridge/rss-bridge">XPathBridge</a></h2>
+    <p class="description">Parse any webpage using <a href="https://devhints.io/xpath" target="_blank">XPath expressions</a></p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-XPathBridge" />
+    <label class="showmore" for="showmore-XPathBridge">Show more</label>
+
+<h5></h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="XPathBridge" /><div class="parameters"><label for="arg-XPathBridge--url">Enter web page URL</label>
+<input  required id="arg-XPathBridge--url" type="text" value="https://news.blizzard.com/en-en" placeholder="https://news.blizzard.com/en-en" name="url" />
+<i class="info" data-for="arg-XPathBridge--url" title="You can specify any website URL which serves data suited for display in RSS feeds
+(for example a news blog).
+
+Example (right click to use):
+https://news.blizzard.com/en-en" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--item">Item selector</label>
+<input  required id="arg-XPathBridge--item" type="text" value="/html/body/div/div[4]/div[2]/div[2]/div/div/section/ol/li/article" placeholder="/html/body/div/div[4]/div[2]/div[2]/div/div/section/ol/li/article" name="item" />
+<i class="info" data-for="arg-XPathBridge--item" title="Enter an XPath expression matching a list of dom nodes, each node containing one
+feed article item in total (usually a surrounding &lt;div&gt; or &lt;span&gt; tag). This will
+be the context nodes for all of the following expressions. This expression usually
+starts with a single forward slash.
+
+Example (right click to use):
+/html/body/div/div[4]/div[2]/div[2]/div/div/section/ol/li/article" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--title">Item title selector</label>
+<input  required id="arg-XPathBridge--title" type="text" value=".//div/div[2]/h2" placeholder=".//div/div[2]/h2" name="title" />
+<i class="info" data-for="arg-XPathBridge--title" title="This expression should match a node contained within each article item node
+containing the article headline. It should start with a dot followed by two
+forward slashes, referring to any descendant nodes of the article item node.
+
+Example (right click to use):
+.//div/div[2]/h2" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--content">Item description selector</label>
+<input  id="arg-XPathBridge--content" type="text" value=".//div[@class=&quot;ArticleListItem-description&quot;]/div[@class=&quot;h6&quot;]" placeholder=".//div[@class=&quot;ArticleListItem-description&quot;]/div[@class=&quot;h6&quot;]" name="content" />
+<i class="info" data-for="arg-XPathBridge--content" title="This expression should match a node contained within each article item node
+containing the article content or description. It should start with a dot
+followed by two forward slashes, referring to any descendant nodes of the
+article item node.
+
+Example (right click to use):
+.//div[@class=&quot;ArticleListItem-description&quot;]/div[@class=&quot;h6&quot;]" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--raw_content">Use raw item description</label>
+<input  id="arg-XPathBridge--raw_content" type="checkbox" name="raw_content"  />
+<i class="info" data-for="arg-XPathBridge--raw_content" title="Whether to use the raw item description or to replace certain characters with
+special significance in HTML by HTML entities (using the PHP function htmlspecialchars)." oncontextmenu="return false">i</i><label for="arg-XPathBridge--uri">Item URL selector</label>
+<input  id="arg-XPathBridge--uri" type="text" value=".//a[@class=&quot;ArticleLink ArticleLink&quot;]/@href" placeholder=".//a[@class=&quot;ArticleLink ArticleLink&quot;]/@href" name="uri" />
+<i class="info" data-for="arg-XPathBridge--uri" title="This expression should match a node&#039;s attribute containing the article URL
+(usually the href attribute of an &lt;a&gt; tag). It should start with a dot
+followed by two forward slashes, referring to any descendant nodes of
+the article item node. Attributes can be selected by prepending an @ char
+before the attributes name.
+
+Example (right click to use):
+.//a[@class=&quot;ArticleLink ArticleLink&quot;]/@href" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--author">Item author selector</label>
+<input  id="arg-XPathBridge--author" type="text" value="" placeholder="" name="author" />
+<i class="info" data-for="arg-XPathBridge--author" title="This expression should match a node contained within each article item
+node containing the article author&#039;s name. It should start with a dot
+followed by two forward slashes, referring to any descendant nodes of
+the article item node." oncontextmenu="return false">i</i><label for="arg-XPathBridge--timestamp">Item date selector</label>
+<input  id="arg-XPathBridge--timestamp" type="text" value=".//time[@class=&quot;ArticleListItem-footerTimestamp&quot;]/@timestamp" placeholder=".//time[@class=&quot;ArticleListItem-footerTimestamp&quot;]/@timestamp" name="timestamp" />
+<i class="info" data-for="arg-XPathBridge--timestamp" title="This expression should match a node or node&#039;s attribute containing the
+article timestamp or date (parsable by PHP&#039;s strtotime function). It
+should start with a dot followed by two forward slashes, referring to
+any descendant nodes of the article item node. Attributes can be
+selected by prepending an @ char before the attributes name.
+
+Example (right click to use):
+.//time[@class=&quot;ArticleListItem-footerTimestamp&quot;]/@timestamp" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--enclosures">Item image selector</label>
+<input  id="arg-XPathBridge--enclosures" type="text" value=".//div[@class=&quot;ArticleListItem-image&quot;]/@style" placeholder=".//div[@class=&quot;ArticleListItem-image&quot;]/@style" name="enclosures" />
+<i class="info" data-for="arg-XPathBridge--enclosures" title="This expression should match a node&#039;s attribute containing an article
+image URL (usually the src attribute of an &lt;img&gt; tag or a style
+attribute). It should start with a dot followed by two forward slashes,
+referring to any descendant nodes of the article item node. Attributes
+can be selected by prepending an @ char before the attributes name.
+
+Example (right click to use):
+.//div[@class=&quot;ArticleListItem-image&quot;]/@style" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--categories">Item category selector</label>
+<input  id="arg-XPathBridge--categories" type="text" value=".//div[@class=&quot;ArticleListItem-label&quot;]" placeholder=".//div[@class=&quot;ArticleListItem-label&quot;]" name="categories" />
+<i class="info" data-for="arg-XPathBridge--categories" title="This expression should match a node or node&#039;s attribute contained
+within each article item node containing the article category. This
+could be inside &lt;div&gt; or &lt;span&gt; tags or sometimes be hidden
+in a data attribute. It should start with a dot followed by two
+forward slashes, referring to any descendant nodes of the article
+item node. Attributes can be selected by prepending an @ char
+before the attributes name.
+
+Example (right click to use):
+.//div[@class=&quot;ArticleListItem-label&quot;]" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-XPathBridge--fix_encoding">Fix encoding</label>
+<input  id="arg-XPathBridge--fix_encoding" type="checkbox" name="fix_encoding"  />
+<i class="info" data-for="arg-XPathBridge--fix_encoding" title="Check this to fix feed encoding by invoking PHP&#039;s utf8_decode
+function on all extracted texts. Try this in case you see &quot;broken&quot; or
+&quot;weird&quot; characters in your feed where you&#039;d normally expect umlauts
+or any other non-ascii characters." oncontextmenu="return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-XPathBridge">Show less</label><p class="maintainer">Niehztog</p></section>    <section
+        class="bridge-card"
+        id="bridge-YouTubeCommunityTabBridge"
+        data-ref="YouTube Community Tab Bridge"
+        data-short-name="YouTubeCommunityTabBridge"
+    >
+
+    <h2><a href="https://www.youtube.com">YouTube Community Tab Bridge</a></h2>
+    <p class="description">Returns posts from a channel's community tab</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-YouTubeCommunityTabBridge" />
+    <label class="showmore" for="showmore-YouTubeCommunityTabBridge">Show more</label>
+
+<h5>By channel ID</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="YouTubeCommunityTabBridge" /><input type="hidden" name="context" value="By channel ID" /><div class="parameters"><label for="arg-YouTubeCommunityTabBridge-By+channel+ID-channel">Channel ID</label>
+<input  required id="arg-YouTubeCommunityTabBridge-By+channel+ID-channel" type="text" value="" placeholder="UCULkRHBdLC5ZcEQBaL0oYHQ" name="channel" />
+<i class="info" data-for="arg-YouTubeCommunityTabBridge-By+channel+ID-channel" title="Example (right click to use):
+UCULkRHBdLC5ZcEQBaL0oYHQ" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<h5>By username</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="YouTubeCommunityTabBridge" /><input type="hidden" name="context" value="By username" /><div class="parameters"><label for="arg-YouTubeCommunityTabBridge-By+username-username">Username</label>
+<input  required id="arg-YouTubeCommunityTabBridge-By+username-username" type="text" value="" placeholder="YouTubeUK" name="username" />
+<i class="info" data-for="arg-YouTubeCommunityTabBridge-By+username-username" title="Example (right click to use):
+YouTubeUK" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-YouTubeCommunityTabBridge">Show less</label><p class="maintainer">VerifiedJoseph</p></section>    <section
+        class="bridge-card"
+        id="bridge-YoutubeBridge"
+        data-ref="YouTube Bridge"
+        data-short-name="YoutubeBridge"
+    >
+
+    <h2><a href="https://www.youtube.com">YouTube Bridge</a></h2>
+    <p class="description">Returns the 10 newest videos by username/channel/playlist or search</p>
+
+    <input type="checkbox" class="showmore-box" id="showmore-YoutubeBridge" />
+    <label class="showmore" for="showmore-YoutubeBridge">Show more</label>
+
+<h5>By username</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="YoutubeBridge" /><input type="hidden" name="context" value="By username" /><div class="parameters"><label for="arg-YoutubeBridge-By+username-u">username</label>
+<input  required id="arg-YoutubeBridge-By+username-u" type="text" value="" placeholder="LinusTechTips" name="u" />
+<i class="info" data-for="arg-YoutubeBridge-By+username-u" title="Example (right click to use):
+LinusTechTips" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+username-duration_min">min. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+username-duration_min" type="number" value="" placeholder="5" name="duration_min" />
+<i class="info" data-for="arg-YoutubeBridge-By+username-duration_min" title="Minimum duration for the video in minutes
+
+Example (right click to use):
+5" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+username-duration_max">max. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+username-duration_max" type="number" value="" placeholder="10" name="duration_max" />
+<i class="info" data-for="arg-YoutubeBridge-By+username-duration_max" title="Maximum duration for the video in minutes
+
+Example (right click to use):
+10" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<h5>By channel id</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="YoutubeBridge" /><input type="hidden" name="context" value="By channel id" /><div class="parameters"><label for="arg-YoutubeBridge-By+channel+id-c">channel id</label>
+<input  required id="arg-YoutubeBridge-By+channel+id-c" type="text" value="" placeholder="UCw38-8_Ibv_L6hlKChHO9dQ" name="c" />
+<i class="info" data-for="arg-YoutubeBridge-By+channel+id-c" title="Example (right click to use):
+UCw38-8_Ibv_L6hlKChHO9dQ" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+channel+id-duration_min">min. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+channel+id-duration_min" type="number" value="" placeholder="5" name="duration_min" />
+<i class="info" data-for="arg-YoutubeBridge-By+channel+id-duration_min" title="Minimum duration for the video in minutes
+
+Example (right click to use):
+5" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+channel+id-duration_max">max. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+channel+id-duration_max" type="number" value="" placeholder="10" name="duration_max" />
+<i class="info" data-for="arg-YoutubeBridge-By+channel+id-duration_max" title="Maximum duration for the video in minutes
+
+Example (right click to use):
+10" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<h5>By custom name</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="YoutubeBridge" /><input type="hidden" name="context" value="By custom name" /><div class="parameters"><label for="arg-YoutubeBridge-By+custom+name-custom">custom name</label>
+<input  required id="arg-YoutubeBridge-By+custom+name-custom" type="text" value="" placeholder="LinusTechTips" name="custom" />
+<i class="info" data-for="arg-YoutubeBridge-By+custom+name-custom" title="Example (right click to use):
+LinusTechTips" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+custom+name-duration_min">min. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+custom+name-duration_min" type="number" value="" placeholder="5" name="duration_min" />
+<i class="info" data-for="arg-YoutubeBridge-By+custom+name-duration_min" title="Minimum duration for the video in minutes
+
+Example (right click to use):
+5" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+custom+name-duration_max">max. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+custom+name-duration_max" type="number" value="" placeholder="10" name="duration_max" />
+<i class="info" data-for="arg-YoutubeBridge-By+custom+name-duration_max" title="Maximum duration for the video in minutes
+
+Example (right click to use):
+10" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<h5>By playlist Id</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="YoutubeBridge" /><input type="hidden" name="context" value="By playlist Id" /><div class="parameters"><label for="arg-YoutubeBridge-By+playlist+Id-p">playlist id</label>
+<input  required id="arg-YoutubeBridge-By+playlist+Id-p" type="text" value="" placeholder="PL8mG-RkN2uTzJc8N0EoyhdC54prvBBLpj" name="p" />
+<i class="info" data-for="arg-YoutubeBridge-By+playlist+Id-p" title="Example (right click to use):
+PL8mG-RkN2uTzJc8N0EoyhdC54prvBBLpj" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+playlist+Id-duration_min">min. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+playlist+Id-duration_min" type="number" value="" placeholder="5" name="duration_min" />
+<i class="info" data-for="arg-YoutubeBridge-By+playlist+Id-duration_min" title="Minimum duration for the video in minutes
+
+Example (right click to use):
+5" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-By+playlist+Id-duration_max">max. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-By+playlist+Id-duration_max" type="number" value="" placeholder="10" name="duration_max" />
+<i class="info" data-for="arg-YoutubeBridge-By+playlist+Id-duration_max" title="Maximum duration for the video in minutes
+
+Example (right click to use):
+10" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<h5>Search result</h5>
+<form method="GET" action="?" class="bridge-form">
+    <input type="hidden" name="action" value="display" />
+    <input type="hidden" name="bridge" value="YoutubeBridge" /><input type="hidden" name="context" value="Search result" /><div class="parameters"><label for="arg-YoutubeBridge-Search+result-s">search keyword</label>
+<input  required id="arg-YoutubeBridge-Search+result-s" type="text" value="" placeholder="LinusTechTips" name="s" />
+<i class="info" data-for="arg-YoutubeBridge-Search+result-s" title="Example (right click to use):
+LinusTechTips" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-Search+result-pa">page</label>
+<input  id="arg-YoutubeBridge-Search+result-pa" type="number" value="" placeholder="1" name="pa" />
+<i class="info" data-for="arg-YoutubeBridge-Search+result-pa" title="This option is not work anymore, as YouTube will always return the same page
+
+Example (right click to use):
+1" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-Search+result-duration_min">min. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-Search+result-duration_min" type="number" value="" placeholder="5" name="duration_min" />
+<i class="info" data-for="arg-YoutubeBridge-Search+result-duration_min" title="Minimum duration for the video in minutes
+
+Example (right click to use):
+5" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i><label for="arg-YoutubeBridge-Search+result-duration_max">max. duration (minutes)</label>
+<input  id="arg-YoutubeBridge-Search+result-duration_max" type="number" value="" placeholder="10" name="duration_max" />
+<i class="info" data-for="arg-YoutubeBridge-Search+result-duration_max" title="Maximum duration for the video in minutes
+
+Example (right click to use):
+10" oncontextmenu="rssbridge_use_placeholder_value(this);return false">i</i></div><button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button></form>
+<label class="showless" for="showmore-YoutubeBridge">Show less</label><p class="maintainer">No maintainer</p></section>
+<section class="footer">
+    <a href="https://github.com/RSS-Bridge/rss-bridge">
+        https://github.com/RSS-Bridge/rss-bridge
+    </a>
+
+    <br>
+    <br>
+
+    <p class="version">
+        2024-02-02 (git.master.36706a3)    </p>
+
+    17/456 active bridges.<br>
+
+    <br>
+
+    
+    
+</section>
+    </div>
+</body>
+</html>
+

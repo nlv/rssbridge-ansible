@@ -1,0 +1,31 @@
+---
+- 
+  name: "Install and configure nginx"
+  hosts: localhost
+  tasks:
+    - name: "Install nginx package"
+      apt:
+        name: nginx
+        state: present
+    - name: "Remove the default nginx site"
+      file:
+        path: /etc/nginx/sites-available/default
+        state: absent
+    - name: "Remove the default nginx site's symlink"
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+    - name: "Create a parent directory for acme-challenge"
+      file:
+        path: /var/www/html/.well-known/
+        state: directory
+    - name: "Create a directory for acme-challenge"
+      file:
+        path: /var/www/html/.well-known/acme-challenge
+        state: directory
+        owner: www-data
+    - name: "Start nginx"
+      service:
+        name: nginx
+        state: started
+        enabled: true

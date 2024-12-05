@@ -1,0 +1,20 @@
+---
+-
+  name: "Create vhost for rssbridge"
+  hosts: localhost
+  tasks:
+    - name: "Include global variables"
+      include_vars: global_variables.yml
+    - name: "Add default nginx configurtion"
+      template:
+        src: ../files/nginx_rssbridge.j2
+        dest: /etc/nginx/sites-available/rssbridge
+    - name: "Enable default"
+      file:
+        src: /etc/nginx/sites-available/rssbridge
+        dest: /etc/nginx/sites-enabled/rssbridge
+        state: link
+    - name: "Load vhsot for default"
+      service:
+        name: nginx
+        state: reloaded
